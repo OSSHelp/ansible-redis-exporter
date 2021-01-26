@@ -1,0 +1,9 @@
+---
+- name: reload redis_exporter unit
+  systemd:
+    daemon_reload: true
+
+- name: restart redis_exporter service
+  systemd:
+    name: "{{ redis_exporter_service_name }}"
+    state: restarted

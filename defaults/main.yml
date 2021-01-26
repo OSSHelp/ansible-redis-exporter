@@ -1,0 +1,36 @@
+---
+redis_exporter_version: "1.5.2"
+redis_exporter_targz_url: "https://github.com/oliver006/redis_exporter/releases/download/v{{ redis_exporter_version }}/redis_exporter-v{{ redis_exporter_version }}.linux-amd64.tar.gz"
+redis_exporter_targz_sums: "sha256:https://github.com/oliver006/redis_exporter/releases/download/v{{ redis_exporter_version }}/sha256sums.txt"
+
+redis_exporter_setup: full
+redis_exporter_config_file: redis_exporter.cfg
+redis_exporter_user_name: redis_exporter
+redis_exporter_service_name: redis_exporter
+redis_exporter_systemd_unit: "/etc/systemd/system/{{ redis_exporter_service_name }}.service"
+
+redis_exporter_dirs:
+  binary_dir: /usr/local/bin
+  config_dir: /usr/local/etc/redis_exporter
+
+redis_exporter_params:
+  addr: "redis://localhost:6379"
+  password: ""
+  exporter_check_keys: ""
+  check_single_keys: ""
+  script: ""
+  debug: "false"
+  log_format: "txt"
+  namespace: "redis"
+  connection_timeout: "15s"
+  web_listen_address: "0.0.0.0:9121"
+  web_telemetry_path: "/metrics"
+  redis_only_metrics: "false"
+  incl_system_metrics: "true"
+  ping_on_connect: "true"
+  is_tile38: "false"
+  export_client_list: "false"
+  skip_tls_verification: ""
+  tls_client_key_file: ""
+  tls_client_cert_file: ""
+  set_client_name: "true"

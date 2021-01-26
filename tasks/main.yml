@@ -1,0 +1,8 @@
+---
+- name: install
+  include_tasks: install.yml
+  when: redis_exporter_setup == "full" or redis_exporter_setup == "install"
+
+- name: configure
+  import_tasks: configure.yml
+  when: redis_exporter_setup == "full" or redis_exporter_setup == "configure"

@@ -1,0 +1,20 @@
+[Unit]
+Description=redis_exporter
+
+[Service]
+Type=forking
+User={{ redis_exporter_user_name }}
+Group={{ redis_exporter_user_name }}
+RuntimeDirectory=redis_exporter
+RuntimeDirectoryMode=0755
+EnvironmentFile={{ redis_exporter_dirs.config_dir }}/{{ redis_exporter_config_file }}
+PIDFile=/var/run/redis_exporter/pid
+ExecStart=/sbin/start-stop-daemon -Sbmp /var/run/redis_exporter/pid -x {{ redis_exporter_dirs.binary_dir }}/redis_exporter
+Restart=always
+
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=redis_exporter
+
+[Install]
+WantedBy=multi-user.target
